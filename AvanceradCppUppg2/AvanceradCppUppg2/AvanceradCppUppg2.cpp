@@ -1,5 +1,5 @@
 #include <cassert>
-#define LEVEL 2
+#define LEVEL 99
 //#define VG true
 #include "Add.hpp"
 
@@ -25,7 +25,9 @@ void TestAckermann() {
 #endif
 
 #include <type_traits>
-#define AssertSame(X,Y) static_assert((std::is_same_v<X, Y>));
+//#define AssertSame(X,Y) static_assert((std::is_same_v<X, Y>)); 
+//ändrade define för den funkar inte?
+#define AssertSame(X, Y) static_assert(std::is_same_v<X, Y>, "Types are not the same")
 
 #if LEVEL>=3
 #include "Simplify.hpp"
@@ -40,6 +42,7 @@ void TestSimplify() {
     AssertSame(const int, SimplifyType_t<const int*>);
     AssertSame(int** const*, SimplifyType_t<int** const**>);
     AssertSame(const int, SimplifyType_t<const int&>);
+
 }
 #endif
 
